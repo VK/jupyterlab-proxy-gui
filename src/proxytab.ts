@@ -61,5 +61,5 @@ export declare namespace ProxyTab {
 }
 
 namespace Private {
-  export const id = 0;
+  export let id = 0;
 }
