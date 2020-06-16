@@ -17,4 +17,4 @@ def load_jupyter_server_extension(lab_app):
         JupyterLab application instance
     """
     setup_handlers(lab_app.web_app)
-    lab_app.log.info("Registered HelloWorld extension at URL path /jupyterlab-proxy-gui")
+    lab_app.log.info("Registered ConfigHandler extension at URL path /jupyterlab-proxy-gui")

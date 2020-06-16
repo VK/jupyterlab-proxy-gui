@@ -14,7 +14,7 @@ const extension: JupyterFrontEndPlugin<void> = {
   activate: (app: JupyterFrontEnd) => {
     console.log('JupyterLab extension jupyterlab-proxy-gui is activated!');
 
-    requestAPI<any>('get_example')
+    requestAPI<any>('get_config')
       .then(data => {
         console.log(data);
       })
