@@ -61,5 +61,7 @@ export declare namespace ProxyTab {
 }
 
 namespace Private {
+  /* eslint-disable */
   export let id = 0;
+  /* eslint-enable */
 }
