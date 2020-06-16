@@ -19,14 +19,15 @@ export
     this.title.label = options.name;
     this.title.icon = options.icon;
     this.title.closable = true;
-    this.title.caption = `Name: `+options.name;
+    this.title.caption = `Name: ` + options.name;
     var url = new URL(document.URL.split('?')[0]);
     url.pathname = options.fullpath;
-    
+
     this.url = url.href;
 
     let iframeElement = this.node.children[0] as HTMLHtmlElement;
 
+    //some pages don't want to use 100% of the height :)
     iframeElement.onload = function () {
       iframeElement.style.height = '100%';
       setTimeout(function () {
@@ -53,9 +54,9 @@ export
 
 export declare namespace ProxyTab {
   interface IOptions {
-      name: string
-      fullpath: string
-      icon: string
+    name: string
+    fullpath: string
+    icon: string
   }
 }
 
