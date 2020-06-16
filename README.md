@@ -1,8 +1,8 @@
 # jupyterlab-proxy-gui
 
-![Github Actions Status](https://github.com/VK/jupyterlab-proxy-gui/workflows/Build/badge.svg)[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/VK/jupyterlab-proxy-gui/master?urlpath=lab)
+![Github Actions Status](https://github.com/VK/jupyterlab-proxy-gui/workflows/Build/badge.svg) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/VK/jupyterlab-proxy-gui/master?urlpath=lab)
 
-A JupyterLab extension to control the configurable-http-proxy of JupyterHub.
+A JupyterLab extension show endpoins of  proxy routes as new tabs.
 
 
 This extension is composed of a Python package named `jupyterlab_proxy_gui`

@@ -23,62 +23,59 @@ function activate(
   launcher: ILauncher,
   menu: IMainMenu
 ): void {
-
   requestAPI<any>('proxygui')
     .then(data => {
-
       const { commands } = app;
-
-      if (
-        'routes' in data && data['routes'].length > 0
-      ) {
-
+      if ('routes' in data && data['routes'].length > 0) {
         const proxyMenu = new Menu({ commands: commands });
         proxyMenu.title.label = 'Proxy';
 
-        let style = document.createElement('style');
+        const style = document.createElement('style');
         style.type = 'text/css';
 
-
         data['routes'].forEach((el: any) => {
-          const command_string = 'proxy-gui-' + el.path;
-          const icon_class = 'proxy-icon-' + el.path;
+          const commandString = 'proxy-gui-' + el.path;
+          const iconClass = 'proxy-icon-' + el.path;
 
-          style.innerHTML += '.' + icon_class + ' {   background-image: url(' + el.icon + '); }\n\n';
+          style.innerHTML +=
+            '.' +
+            iconClass +
+            ' {   background-image: url(' +
+            el.icon +
+            '); }\n\n';
 
-
-          commands.addCommand(command_string, {
+          commands.addCommand(commandString, {
             label: el.name,
             caption: 'Open ' + el.name,
-            iconClass: icon_class,
+            iconClass: iconClass,
             execute: args => {
-              let t = new ProxyTab({ name: el.name, fullpath: el.fullpath, icon: icon_class });
-              let tb = new MainAreaWidget({ content: t });
+              const t = new ProxyTab({
+                name: el.name,
+                fullpath: el.fullpath,
+                icon: iconClass
+              });
+              const tb = new MainAreaWidget({ content: t });
               app.shell.add(tb, 'main');
               app.shell.activateById(tb.id);
               return tb;
-            },
+            }
           });
 
           launcher.add({
-            command: command_string,
+            command: commandString,
             category: 'Proxy',
-            rank: 4,
+            rank: 4
           });
 
           proxyMenu.addItem({
-            command: command_string,
-            args: {},
+            command: commandString,
+            args: {}
           });
-
-        })
+        });
 
         menu.addMenu(proxyMenu, { rank: 40 });
         document.getElementsByTagName('head')[0].appendChild(style);
       }
-
-
-
     })
     .catch(reason => {
       console.error(
@@ -87,8 +84,6 @@ function activate(
     });
 }
 
-
-
 /**
  * Initialization data for the extension.
  */
@@ -96,7 +91,7 @@ const extension: JupyterFrontEndPlugin<void> = {
   id: 'jupyterlab-proxy-gui',
   requires: [ILauncher, IMainMenu],
   autoStart: true,
-  activate,
+  activate
 };
 
 export default extension;
