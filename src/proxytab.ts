@@ -1,0 +1,67 @@
+import {
+  IFrame
+} from '@jupyterlab/apputils';
+
+
+/**
+ * A widget which manages an iframe routing to the proxy url
+ */
+export
+  class ProxyTab extends IFrame {
+  /**
+   * Construct a new iframe.
+   */
+  constructor(options?: ProxyTab.IOptions) {
+    super({ sandbox: ['allow-scripts', 'allow-forms', 'allow-modals', 'allow-same-origin'] });
+
+    // Initialize settings.
+    this.id = `jp-ProxyTab-${Private.id++}`;
+    this.title.label = options.name;
+    this.title.icon = options.icon;
+    this.title.closable = true;
+    this.title.caption = `Name: `+options.name;
+    var url = new URL(document.URL.split('?')[0]);
+    url.pathname = options.fullpath;
+    
+    this.url = url.href;
+
+    let iframeElement = this.node.children[0] as HTMLHtmlElement;
+
+    iframeElement.onload = function () {
+      iframeElement.style.height = '100%';
+      setTimeout(function () {
+        iframeElement.style.height = '100%';
+      }, 50);
+      setTimeout(function () {
+        iframeElement.style.height = '100vh';
+      }, 100);
+      setTimeout(function () {
+        iframeElement.style.height = '100%';
+      }, 200);
+      setTimeout(function () {
+        iframeElement.style.height = '100vh';
+      }, 400);
+      setTimeout(function () {
+        iframeElement.style.height = '100%';
+      }, 500);
+    };
+
+  };
+
+
+}
+
+export declare namespace ProxyTab {
+  interface IOptions {
+      name: string
+      fullpath: string
+      icon: string
+  }
+}
+
+
+namespace Private {
+
+  export
+    let id = 0;
+}
