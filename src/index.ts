@@ -21,28 +21,28 @@ import { requestAPI } from './jupyterlab-proxy-gui';
 function activate(
   app: JupyterFrontEnd,
   launcher: ILauncher,
-  menu: IMainMenu): void {
+  menu: IMainMenu
+): void {
 
   requestAPI<any>('proxygui')
     .then(data => {
 
       const { commands } = app;
 
-
-
-      if ("routes" in data && data["routes"].length > 0) {
+      if (
+        'routes' in data && data['routes'].length > 0
+      ) {
 
         const proxyMenu = new Menu({ commands: commands });
         proxyMenu.title.label = 'Proxy';
 
-        var style = document.createElement('style');
+        let style = document.createElement('style');
         style.type = 'text/css';
 
 
-        data["routes"].forEach((el: any) => {
-
-          let command_string = 'proxy-gui-' + el.path;
-          let icon_class = 'proxy-icon-' + el.path;
+        data['routes'].forEach((el: any) => {
+          const command_string = 'proxy-gui-' + el.path;
+          const icon_class = 'proxy-icon-' + el.path;
 
           style.innerHTML += '.' + icon_class + ' {   background-image: url(' + el.icon + '); }\n\n';
 
@@ -54,7 +54,7 @@ function activate(
             execute: args => {
               let t = new ProxyTab({ name: el.name, fullpath: el.fullpath, icon: icon_class });
               let tb = new MainAreaWidget({ content: t });
-              app.shell.add(tb, "main");
+              app.shell.add(tb, 'main');
               app.shell.activateById(tb.id);
               return tb;
             },
