@@ -1,7 +1,5 @@
 {
-    "ConfigurableHTTPProxy": {
-        "auth_token": "adfasdfs"
-    },
+
     "routes": [
         {
             "path": "mongo",
