@@ -33,6 +33,9 @@ def _(*args, **kwargs):
 # verify the environment is self-consistent before even starting
 _(sys.executable, "-m", "pip", "check")
 
+# update all labextension
+_("jupyter", "labextension", "update", "--all")
+
 # install the labextension
 _(sys.executable, "-m", "pip", "install", "-e", ".")
 
