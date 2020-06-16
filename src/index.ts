@@ -3,21 +3,13 @@ import {
   JupyterFrontEndPlugin
 } from '@jupyterlab/application';
 
-import {
-  ProxyTab
-} from './proxytab';
+import { ProxyTab } from './proxytab';
 
-import {
-  ILauncher
-} from '@jupyterlab/launcher';
+import { ILauncher } from '@jupyterlab/launcher';
 
-import {
-  IMainMenu
-} from '@jupyterlab/mainmenu';
+import { IMainMenu } from '@jupyterlab/mainmenu';
 
-import {
-  MainAreaWidget
-} from '@jupyterlab/apputils';
+import { MainAreaWidget } from '@jupyterlab/apputils';
 
 import { Menu } from '@lumino/widgets';
 
@@ -26,19 +18,22 @@ import { requestAPI } from './jupyterlab-proxy-gui';
 /**
  * Activate function of the plugin
  */
-function activate(app: JupyterFrontEnd, launcher: ILauncher, menu: IMainMenu): void {
+function activate(
+  app: JupyterFrontEnd,
+  launcher: ILauncher,
+  menu: IMainMenu): void {
 
   requestAPI<any>('proxygui')
     .then(data => {
 
-      let { commands } = app;
+      const { commands } = app;
 
 
 
       if ("routes" in data && data["routes"].length > 0) {
 
         const proxyMenu = new Menu({ commands: commands });
-        proxyMenu.title.label = "Proxy";
+        proxyMenu.title.label = 'Proxy';
 
         var style = document.createElement('style');
         style.type = 'text/css';
@@ -46,8 +41,8 @@ function activate(app: JupyterFrontEnd, launcher: ILauncher, menu: IMainMenu): v
 
         data["routes"].forEach((el: any) => {
 
-          let command_string = "proxy-gui-" + el.path;
-          let icon_class = "proxy-icon-" + el.path;
+          let command_string = 'proxy-gui-' + el.path;
+          let icon_class = 'proxy-icon-' + el.path;
 
           style.innerHTML += '.' + icon_class + ' {   background-image: url(' + el.icon + '); }\n\n';
 
