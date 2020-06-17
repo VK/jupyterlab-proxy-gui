@@ -24,32 +24,32 @@ def _(*args, **kwargs):
 
 
 # verify the environment is self-consistent before even starting
-_(sys.executable, "-m", "pip", "check")
+#_(sys.executable, "-m", "pip", "check")
 
 # update all labextension
-_("jupyter", "labextension", "update", "--all")
+#_("jupyter", "labextension", "update", "--all")
 
 # install the labextension
-_(sys.executable, "-m", "pip", "install", "-e", ".")
+#_(sys.executable, "-m", "pip", "install", "-e", ".")
 
 # verify the environment the extension didn't break anything
-_(sys.executable, "-m", "pip", "check")
+#_(sys.executable, "-m", "pip", "check")
 
 # enable the serverextension (normally would be handled by package_data)
-_("jupyter", "serverextension", "enable", "--sys-prefix", "--py", "jupyterlab_proxy_gui")
+#_("jupyter", "serverextension", "enable", "--sys-prefix", "--py", "jupyterlab_proxy_gui")
 
 # list the extensions
-_("jupyter", "serverextension", "list")
+#_("jupyter", "serverextension", "list")
 
 # install dependencies
-_("jlpm")
-_("jlpm", "build")
+#_("jlpm")
+#_("jlpm", "build")
 
 # install the labextension
-_("jupyter", "labextension", "link", ".")
+#_("jupyter", "labextension", "link", ".")
 
 # verify the list of extensions
-_("jupyter", "labextension", "list")
+#_("jupyter", "labextension", "list")
 
-print("JupyterLab with jupyterlab-proxy-gui is ready to run with:\n")
-print("\tjupyter lab\n")
+#print("JupyterLab with jupyterlab-proxy-gui is ready to run with:\n")
+#print("\tjupyter lab\n")
