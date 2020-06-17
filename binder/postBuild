@@ -58,11 +58,9 @@ def _(*args, **kwargs):
 #print("\tjupyter lab\n")
 
 
-_("echo", "$NODE_OPTIONS")
-
 _("pip", "install", "jupyterlab_proxy_gui")
 
-_("NODE_OPTIONS='--max_old_space_size=4096'", "jupyter", "lab", "build", "--dev-build=False", "--minimize=False")
+_("jupyter", "lab", "build", "--dev-build=False", "--minimize=False")
 
 
 #print("JupyterLab with jupyterlab-proxy-gui is ready to run with:\n")
