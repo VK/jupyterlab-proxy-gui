@@ -42,17 +42,12 @@ _("jupyter", "serverextension", "list")
 
 # install dependencies
 _("jlpm")
+_("jlpm", "build")
 
 # install the labextension
-_("jupyter", "labextension", "install", ".", "--no-build")
+_("jupyter", "labextension", "link", ".")
 
 # verify the list of extensions
-_("jupyter", "labextension", "list")
-
-# verify the list of extensions
-_("jupyter", "lab", "build", "--dev-build=False", "--minimize=True")
-
-# verify the list of extensions one last time
 _("jupyter", "labextension", "list")
 
 print("JupyterLab with jupyterlab-proxy-gui is ready to run with:\n")
