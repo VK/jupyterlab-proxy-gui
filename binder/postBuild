@@ -18,7 +18,7 @@ def _(*args, **kwargs):
     """
     print("\n\tRUN ", " ".join(args), "\n")
     #return_code = subprocess.call(args, **kwargs)
-    return_code = subprocess.run(args, **kwargs, env={"NODE_OPTIONS": "--max_old_space_size=4096"}).returncode
+    return_code = subprocess.run(args, **kwargs, env={"NODE_OPTIONS": "--max_old_space_size=4096"}, shell=True).returncode
     if return_code != 0:
         print("\nERROR", return_code, " ".join(args))
         #sys.exit(return_code)
