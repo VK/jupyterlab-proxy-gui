@@ -11,7 +11,7 @@
 import subprocess
 import sys
 
-def _(env=None, *args, **kwargs):
+def _(*args, **kwargs):
     """ Run a command, echoing the args
 
         fails hard if something goes wrong
