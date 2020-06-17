@@ -1,5 +1,12 @@
-pip install -e .
-jupyter serverextension enable --py jupyterlab_proxy_gui --sys-prefix
-jlpm
-jlpm build
-#NODE_OPTIONS="--max_old_space_size=4096" jupyter labextension link . --dev-build=False --minimize=False
+#NODE_OPTIONS="--max_old_space_size=4096"
+
+#pip install -e .
+#jupyter serverextension enable --py jupyterlab_proxy_gui --sys-prefix
+#jlpm
+#jlpm build
+#jupyter labextension link . --no-build
+#jupyter labextension link . --dev-build=False --minimize=False
+
+
+pip install jupyterlab_proxy_gui
+NODE_OPTIONS="--max_old_space_size=4096" jupyter lab build --dev-build=False --minimize=False
