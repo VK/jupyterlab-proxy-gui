@@ -11,8 +11,6 @@
 import subprocess
 import sys
 
-
-
 def _(*args, **kwargs):
     """ Run a command, echoing the args
 
@@ -23,6 +21,7 @@ def _(*args, **kwargs):
     if return_code != 0:
         print("\nERROR", return_code, " ".join(args))
         sys.exit(return_code)
+
 # verify the environment is self-consistent before even starting
 _(sys.executable, "-m", "pip", "check")
 
@@ -40,14 +39,18 @@ _("jupyter", "serverextension", "enable", "--sys-prefix", "--py", "jupyterlab_pr
 
 # list the extensions
 _("jupyter", "serverextension", "list")
+
 # install dependencies
 _("jlpm")
+
+# install the labextension
+_("jupyter", "labextension", "install", ".", "--no-build")
 
 # verify the list of extensions
 _("jupyter", "labextension", "list")
 
 # verify the list of extensions
-_("jupyter", "lab", "build", "--dev-build=False", "--minimize=False")
+_("jupyter", "lab", "build", "--dev-build=False", "--minimize=True")
 
 # verify the list of extensions one last time
 _("jupyter", "labextension", "list")
