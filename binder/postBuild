@@ -17,6 +17,7 @@ def _(*args, **kwargs):
         fails hard if something goes wrong
     """
     print("\n\tRUN ", " ".join(args), "\n")
+    #return_code = subprocess.call(args, **kwargs)
     return_code = subprocess.run(args, **kwargs, env={"NODE_OPTIONS": "--max_old_space_size=4096"}).returncode
     if return_code != 0:
         print("\nERROR", return_code, " ".join(args))
@@ -58,8 +59,8 @@ def _(*args, **kwargs):
 
 _("pip", "install", "jupyterlab_proxy_gui")
 
-_("jupyter", "lab", "build", "--dev-build=False", "--minimize=False")
+_("NODE_OPTIONS='--max_old_space_size=4096'", "jupyter", "lab", "build", "--dev-build=False", "--minimize=False")
 
 
-print("JupyterLab with jupyterlab-proxy-gui is ready to run with:\n")
-print("\tjupyter lab\n")
+#print("JupyterLab with jupyterlab-proxy-gui is ready to run with:\n")
+#print("\tjupyter lab\n")
