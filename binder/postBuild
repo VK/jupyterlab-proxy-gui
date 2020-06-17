@@ -10,14 +10,7 @@
 """
 import subprocess
 import sys
-from pathlib import Path
 
-
-ROOT = Path.cwd()
-LAB_EXTENSIONS = ROOT / "binder" / "labextensions.txt"
-
-if not LAB_EXTENSIONS.exists():
-    LAB_EXTENSIONS = ROOT / "labextensions.txt"
 
 
 def _(*args, **kwargs):
@@ -25,7 +18,7 @@ def _(*args, **kwargs):
 
         fails hard if something goes wrong
     """
-    print("\n\t", " ".join(args), "\n")
+    print("\n\tRUN ", " ".join(args), "\n")
     return_code = subprocess.call(args, **kwargs)
     if return_code != 0:
         print("\nERROR", return_code, " ".join(args))
@@ -49,18 +42,6 @@ _("jupyter", "serverextension", "enable", "--sys-prefix", "--py", "jupyterlab_pr
 _("jupyter", "serverextension", "list")
 # install dependencies
 _("jlpm")
-
-# initially list installed extensions to determine if there are any surprises
-_("jupyter", "labextension", "list")
-
-# install the labextension
-_("jupyter", "labextension", "install", "--no-build", "--debug",
-    *[
-        ext.strip()
-        for ext in LAB_EXTENSIONS.read_text().splitlines()
-        if ext.strip() and not ext.strip().startswith("#")
-    ]
-)
 
 # verify the list of extensions
 _("jupyter", "labextension", "list")
