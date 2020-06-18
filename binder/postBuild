@@ -8,5 +8,5 @@
 #jupyter labextension link . --dev-build=False --minimize=False
 
 
-pip install jupyterlab_proxy_gui
+pip install .
 NODE_OPTIONS="--max_old_space_size=4096" jupyter lab build --dev-build=False --minimize=False

@@ -34,10 +34,11 @@ package_data_spec = {
 }
 
 data_files_spec = [
-    ("share/jupyter/lab/extensions", lab_path, "*.tgz"),
+    ("share/jupyter/lab/extensions", str(lab_path), "*.tgz"),
     ("etc/jupyter/jupyter_notebook_config.d",
-     "jupyter-config", "jupyterlab_proxy_gui.json"),
+     "jupyter-config/jupyter_notebook_config.d", "jupyterlab_proxy_gui.json"),
 ]
+
 
 cmdclass = create_cmdclass("jsdeps", 
     package_data_spec=package_data_spec,
@@ -63,7 +64,9 @@ setup_args = dict(
     cmdclass= cmdclass,
     packages=setuptools.find_packages(),
     install_requires=[
-        "jupyterlab~=2.0",
+        'notebook',
+        'nbdime ~=2.0',
+        'pexpect'
     ],
     zip_safe=False,
     include_package_data=True,
