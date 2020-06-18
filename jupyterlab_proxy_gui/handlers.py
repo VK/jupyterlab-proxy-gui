@@ -21,11 +21,15 @@ def register_proxy_routes():
     headers = {'Authorization': "access_token {}".format(auth_token) }
     proxyurl = "http://127.0.0.1:8001"
     
+       
     for r in proxy_config["routes"]:
-        request_url = "{}{}".format(proxyurl, os.path.join("/api/routes/", base_url[1:], r["path"]))
-        r["fullpath"] = os.path.join(base_url, r["path"])
-        requests.post(request_url, headers=headers, data=json.dumps(r["proxy"]))
-    pass
+        try:
+            request_url = "{}{}".format(proxyurl, os.path.join("/api/routes/", base_url[1:], r["path"]))
+            r["fullpath"] = os.path.join(base_url, r["path"])
+            requests.post(request_url, headers=headers, data=json.dumps(r["proxy"]))
+        except:
+            pass
+
     
 
 class GetConfigHandler(APIHandler):
@@ -35,7 +39,12 @@ class GetConfigHandler(APIHandler):
         register_proxy_routes()
         self.finish(json.dumps(proxy_config))
 
+
+
+
 def setup_handlers(web_app):
+
+    
     global auth_token
     global base_url
     global proxy_config
@@ -49,17 +58,21 @@ def setup_handlers(web_app):
     except:
         pass
     
-    #try to read proxy auth token form env variable
-    if environ.get('CONFIGPROXY_AUTH_TOKEN') is not None:
-        auth_token = environ.get('CONFIGPROXY_AUTH_TOKEN')
-    else:
-        #try to read proxy auth token from config file
-        config = configparser.ConfigParser()
-        config.read('/defaults.cfg')
-        auth_token = config["ConfigurableHTTPProxy"]["auth_token"]
+    try:
+        #try to read proxy auth token form env variable
+        if environ.get('CONFIGPROXY_AUTH_TOKEN') is not None:
+            auth_token = environ.get('CONFIGPROXY_AUTH_TOKEN')
+        else:
+            #try to read proxy auth token from config file
+            config = configparser.ConfigParser()
+            config.read('/defaults.cfg')
+            auth_token = config["ConfigurableHTTPProxy"]["auth_token"]
+    except:
+        pass
         
     base_url = web_app.settings["base_url"]
-    
+
+   
     get_config_pattern = url_path_join(base_url, "jupyterlab-proxy-gui", "proxygui")
     handlers = [(get_config_pattern, GetConfigHandler)]
     web_app.add_handlers(host_pattern, handlers)
