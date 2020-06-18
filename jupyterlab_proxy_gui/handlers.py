@@ -53,7 +53,7 @@ def setup_handlers(web_app):
     
     #try to load the config file
     try:
-        with open("jupyterlab-proxy-gui-config.json", "r") as f:
+        with open(".jupyterlab-proxy-gui-config.json", "r") as f:
             proxy_config = json.loads(f.read())
     except:
         pass
