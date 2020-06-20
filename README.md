@@ -5,7 +5,7 @@
 
 A JupyterLab extension show endpoins of proxy routes as new tabs. JupyterHub and the configurable-http-proxy is used to forward the data.
 
-![proxy-gui-example](https://github.com/VK/jupyterlab-orixy-gui/blob/master/media/example.gif?raw=true)
+![proxy-gui-example](https://raw.githubusercontent.com/VK/jupyterlab-proxy-gui/master/media/example.gif)
 
 
 This extension is composed of a Python package named `jupyterlab_proxy_gui`
