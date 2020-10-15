@@ -40,4 +40,11 @@ jobs:
       uses: JS-DevTools/npm-publish@v1
       with:
           token: ${{ secrets.NPM_AUTH_TOKEN }}
+          
+          
+    - name: Publish to PyPI
+      uses: pypa/gh-action-pypi-publish@master
+      with:
+        user: __token__
+        password: ${{ secrets.PYPI_AUTH_TOKEN }}
         
