@@ -44,7 +44,7 @@ jobs:
           
     - name: Build python
       run: |
-        npm run build:labextension
+        npm run build:all
           
           
     - name: Publish to PyPI
