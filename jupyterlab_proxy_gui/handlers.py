@@ -24,7 +24,12 @@ def register_proxy_routes():
        
     for r in proxy_config["routes"]:
         try:
+            
             request_url = "{}{}".format(proxyurl, os.path.join("/api/routes/", base_url[1:], r["path"]))
+
+            if ("rootpath" in r and r["rootpath"]):
+                request_url = "{}{}".format(proxyurl, os.path.join("/api/routes/", r["path"]))
+
             r["fullpath"] = os.path.join(base_url, r["path"])
             requests.post(request_url, headers=headers, data=json.dumps(r["proxy"]))
         except:
