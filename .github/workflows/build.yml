@@ -34,3 +34,12 @@ jobs:
         jupyter labextension list 1>labextensions 2>&1
         cat labextensions | grep "jupyterlab-proxy-gui.*OK"
         python -m jupyterlab.browser_check
+        
+    - name: Publish if version has been updated
+      uses: pascalgn/npm-publish-action@06e0830ea83eea10ed4a62654eeaedafb8bf50fc
+      with: # All of theses inputs are optional
+        tag_name: "v%s"
+        workspace: "."
+      env: # More info about the environment variables in the README
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Leave this as is, it's automatically generated
+        NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }} # You need to set this in your repo settings
