@@ -44,7 +44,7 @@ jobs:
           
     - name: Build python
       run: |
-        npm run build:all
+        python setup.py bdist_wheel
           
           
     - name: Publish to PyPI
