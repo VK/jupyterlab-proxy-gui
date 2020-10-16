@@ -45,6 +45,8 @@ jobs:
     - name: Build python
       run: |
         python setup.py bdist_wheel
+      env: 
+        INPUT_TOKEN: ''
           
           
     - name: Publish to PyPI
