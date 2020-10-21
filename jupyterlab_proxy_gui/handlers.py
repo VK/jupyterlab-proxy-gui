@@ -39,7 +39,8 @@ def register_proxy_routes():
         if "extra" in r:
             for e in r["extra"]:
                 try:
-                    requests.post(e["url"], headers=headers, data=json.dumps(e["proxy"]))
+                    request_url = "{}{}".format(proxyurl, os.path.join("/api/routes/", e["path"]))
+                    requests.post(request_url, headers=headers, data=json.dumps(e["proxy"]))
                 except:
                     pass
 
