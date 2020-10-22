@@ -35,7 +35,7 @@ function activate(
 
         data['routes'].forEach((el: any) => {
           const commandString = 'proxy-gui-' + el.path;
-          const iconClass = 'proxy-icon-' + el.path;
+          const iconClass = 'proxy-icon-' + el.path.replace("/","");
 
           style.innerHTML +=
             '.' +
