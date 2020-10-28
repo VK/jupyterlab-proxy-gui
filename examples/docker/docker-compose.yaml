@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  hub:
+    build: .
+    image: jupyterhub-proxy-example
+    ports: 
+        - '8000:8000'
+    secrets:
+      - source: defaults.cfg
+        target: /defaults.cfg
+
+  mongo:
+    image: mongo
+    volumes:
+        - mongodb:/data/db
+        - mongodb_config:/data/configdb
+
+  mongo-express:
+    image: mongo-express
+    depends_on:
+        - "mongo"
+    environment:
+        - ME_CONFIG_SITE_BASEURL=/user/test/mongo
+
+
+secrets:
+  defaults.cfg:
+    file: ./defaults.cfg
+
+volumes:
+  mongodb:
+  mongodb_config:        
+

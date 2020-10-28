@@ -1,0 +1,16 @@
+
+FROM jupyterhub/jupyterhub
+
+
+# create a testuser
+RUN useradd -m test -s /bin/bash && echo 'test:test' | chpasswd
+
+# install jupyterlab and jupyterlab_proxy_gui
+RUN python3 -m pip install jupyterlab jupyterlab_proxy_gui \
+    && jupyter lab build --dev-build=False --minimize=False
+
+# copy configs
+COPY ./jupyterhub_config.py /jupyterhub_config.py
+COPY ./jupyterlab-proxy-gui-config.json /home/test/.jupyterlab-proxy-gui-config.json
+
+ENTRYPOINT ["jupyterhub",  "-f",  "/jupyterhub_config.py"]
