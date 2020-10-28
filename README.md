@@ -5,6 +5,8 @@
 
 A JupyterLab extension show endpoins of proxy routes as new tabs. JupyterHub and the configurable-http-proxy is used to forward the data.
 
+An docker setup can be found at [examples/docker](examples/docker)
+
 ![proxy-gui-example](https://raw.githubusercontent.com/VK/jupyterlab-proxy-gui/master/media/example.gif)
 
 
