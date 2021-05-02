@@ -1,6 +1,6 @@
 {
   "name": "jupyterlab-proxy-gui",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "A JupyterLab extension to control the configurable-http-proxy of JupyterHub.",
   "keywords": [
     "jupyter",
@@ -39,22 +39,23 @@
     "watch": "tsc -w"
   },
   "dependencies": {
-    "@jupyterlab/application": "^2.0.0",
-    "@jupyterlab/coreutils": "^4.0.0",
-    "@jupyterlab/services": "^5.0.0",
-    "@jupyterlab/launcher": "^2.0.0",
-    "@jupyterlab/mainmenu": "^2.0.0"
+    "@jupyterlab/application": "^2.0.0 || ^3.0.0",
+    "@jupyterlab/coreutils": "^5.0.0",
+    "@jupyterlab/launcher": "^2.0.0 || ^3.0.0",
+    "@jupyterlab/mainmenu": "^2.0.0 || ^3.0.0",
+    "@jupyterlab/services": "^6.0.7"
   },
   "devDependencies": {
+    "@jupyterlab/builder": "^3.0.2",
     "@typescript-eslint/eslint-plugin": "^2.25.0",
     "@typescript-eslint/parser": "^2.25.0",
     "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.10.1",
-    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-prettier": "^3.4.0",
     "mkdirp": "^1.0.3",
     "prettier": "1.16.4",
     "rimraf": "^2.6.1",
-    "typescript": "~3.7.0"
+    "typescript": "^3.9.9"
   },
   "sideEffects": [
     "style/*.css"
