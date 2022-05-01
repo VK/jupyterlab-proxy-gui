@@ -10,16 +10,13 @@ export class ProxyTab extends IFrame {
   constructor(options?: ProxyTab.IOptions) {
     super({
       sandbox: [
-        'allow-scripts',
         'allow-forms',
         'allow-modals',
-        'allow-same-origin',
         'allow-popups',
-        'popups-to-escape-sandbox',
         'allow-presentation',
-        'allow-storage-access-by-user-activation',
-        'allow-top-navigation',
-        'allow-top-navigation-by-user-activation'
+        'allow-same-origin',
+        'allow-scripts',
+        'allow-top-navigation'
       ]
     });
 
@@ -37,7 +34,7 @@ export class ProxyTab extends IFrame {
     const iframeElement = this.node.children[0] as HTMLHtmlElement;
 
     //some pages don't want to use 100% of the height :)
-    iframeElement.onload = function(): void {
+    iframeElement.onload = function (): void {
       iframeElement.style.height = '100%';
       setTimeout(() => {
         iframeElement.style.height = '100%';
