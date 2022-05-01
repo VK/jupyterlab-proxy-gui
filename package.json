@@ -1,6 +1,6 @@
 {
   "name": "jupyterlab-proxy-gui",
-  "version": "0.1.15",
+  "version": "0.1.16",
   "description": "A JupyterLab extension to control the configurable-http-proxy of JupyterHub.",
   "keywords": [
     "jupyter",
