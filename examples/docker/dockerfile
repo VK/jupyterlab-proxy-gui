@@ -1,5 +1,5 @@
 
-FROM jupyterhub/jupyterhub
+FROM jupyterhub/jupyterhub:4.0.1
 
 
 # create a testuser
